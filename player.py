@@ -1,12 +1,13 @@
 import arcade
 
 class Player():    
-    def __init__(self, position=[0,0], sprite=arcade.Sprite()):
+    def __init__(self, position={"x": 0, "y": 0}, sprite=arcade.Sprite()):
         self.position = position
         self.sprite = sprite
 
     def draw(self):
-        self.sprite.center_x = self.position[0]
-        self.sprite.center_y = self.position[1]
+        print(self.position)
+        self.sprite.center_x = self.position["x"]
+        self.sprite.center_y = self.position["y"]
         self.sprite.draw()
         

@@ -16,8 +16,13 @@ class StickmanWindow(arcade.Window):
         
         self.background = arcade.load_texture("./assets/background.png")
         
-        # self.player = Player([10, 10], )
+        # change player.position to be respective of sprite's position
+        self.player = Player({"x": 10, "y": 10}, arcade.Sprite("./assets/run/run1.png"))
         # self.player.textures = []
+        
+        self.physics_engine = arcade.PhysicsEnginePlatformer(
+            self.player.sprite, gravity_constant=1
+        )
         
     def on_draw(self):
         print("Drawing")
@@ -31,13 +36,13 @@ class StickmanWindow(arcade.Window):
 
         # If the player presses a key, update the speed
         if key == arcade.key.UP:
-            self.player_sprite.change_y = c.MOVEMENT_SPEED
+            self.player.position["y"] += c.MOVEMENT_SPEED
         elif key == arcade.key.DOWN:
-            self.player_sprite.change_y = -c.MOVEMENT_SPEED
+            self.player.position["y"] -= c.MOVEMENT_SPEED
         elif key == arcade.key.LEFT:
-            self.player_sprite.change_x = -c.MOVEMENT_SPEED
+            self.player.position["x"] -= c.MOVEMENT_SPEED
         elif key == arcade.key.RIGHT:
-            self.player_sprite.change_x = c.MOVEMENT_SPEED
+            self.player.position["x"] += c.MOVEMENT_SPEED
         
         
 def main():
